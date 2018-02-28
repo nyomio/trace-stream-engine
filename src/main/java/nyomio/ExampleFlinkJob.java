@@ -6,6 +6,7 @@ import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.windowing.time.Time;
+import org.apache.flink.util.Collector;
 
 public class ExampleFlinkJob {
 
@@ -29,15 +30,22 @@ public class ExampleFlinkJob {
 
     // parse the data, group it, window it, and aggregate the counts
     DataStream<WordWithCount> windowCounts = text
-        .flatMap((FlatMapFunction<String, WordWithCount>) (value, out) -> {
-          for (String word : value.split("\\s")) {
-            out.collect(new WordWithCount(word, 1L));
+        .flatMap(new FlatMapFunction<String, WordWithCount>() {
+          @Override
+          public void flatMap(String value, Collector<WordWithCount> out) {
+            for (String word : value.split("\\s")) {
+              out.collect(new WordWithCount(word, 1L));
+            }
           }
         })
         .keyBy("word")
         .timeWindow(Time.seconds(5), Time.seconds(1))
-        .reduce(
-            (ReduceFunction<WordWithCount>) (a, b) -> new WordWithCount(a.word, a.count + b.count));
+        .reduce(new ReduceFunction<WordWithCount>() {
+          @Override
+          public WordWithCount reduce(WordWithCount a, WordWithCount b) {
+            return new WordWithCount(a.word, a.count + b.count);
+          }
+        });
 
     // print the results with a single thread, rather than in parallel
     windowCounts.print().setParallelism(1);
