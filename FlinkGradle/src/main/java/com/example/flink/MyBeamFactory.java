@@ -89,7 +89,7 @@ public class MyBeamFactory implements BeamFactory {
 		DataSourceConfig<PropertiesBasedConfig> locationConfig = config.getDataSource(datasource);
 		Tranquilizer<Map<String, Object>> sender = DruidBeams.fromConfig(locationConfig)
 				.buildTranquilizer(locationConfig.tranquilizerBuilder());
-		// TODO Auto-generated method stub
+		sender.start();
 		return sender;
 	}
 
