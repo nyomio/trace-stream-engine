@@ -1,4 +1,4 @@
-package com.example.flink;
+package flink.example;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 

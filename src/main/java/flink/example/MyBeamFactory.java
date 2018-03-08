@@ -1,4 +1,4 @@
-package com.example.flink;
+package flink.example;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

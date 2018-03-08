@@ -1,4 +1,4 @@
-package com.example.flink;
+package flink.example;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -8,7 +8,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.util.Collector;
 
-public class ExampleFlinkJob {
+public class ExampleFlinkJobJava {
 
   public static void main(String[] args) throws Exception {
 

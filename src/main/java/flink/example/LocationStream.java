@@ -1,4 +1,4 @@
-package com.example.flink;
+package flink.example;
 
 import java.util.HashMap;
 import java.util.Map;

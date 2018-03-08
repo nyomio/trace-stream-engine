@@ -1,8 +1,7 @@
-package com.example.flink;
+package flink.example;
 
+import flink.example.spring.AppConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import com.example.flink.spring.AppConfig;
 
 public class Application {
 
