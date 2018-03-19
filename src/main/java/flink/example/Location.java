@@ -5,17 +5,14 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class Location {
 
 	private Long timestamp;
-	private Double lat;
-	private Double lng;
-	private String dimValue = "dim" + timestamp;
-	private int numValue;
+	private String message;
+	private String ip;
 
-	public Location(Long timestamp, Double lat, Double lng) {
+	public Location(Long timestamp, String message, String ip) {
 		super();
 		this.timestamp = timestamp;
-		this.lat = lat;
-		this.lng = lng;
-		this.numValue = lat.intValue();
+		this.message = message;
+		this.ip = ip;
 	}
 
 	public Long getTimestamp() {
@@ -26,40 +23,24 @@ public class Location {
 		this.timestamp = timestamp;
 	}
 
-	public Double getLat() {
-		return lat;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setLat(Double lat) {
-		this.lat = lat;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
-	public Double getLng() {
-		return lng;
-	}
-
-	public void setLng(Double lng) {
-		this.lng = lng;
-	}
-
-	public String getDimValue() {
-		return dimValue;
-	}
-
-	public void setDimValue(String dimValue) {
-		this.dimValue = dimValue;
-	}
-
-	public int getNumValue() {
-		return numValue;
-	}
-
-	public void setNumValue(int numValue) {
-		this.numValue = numValue;
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
+	}
+
+	public String getIp() {
+		return ip;
 	}
 }
