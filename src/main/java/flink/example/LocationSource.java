@@ -1,24 +1,35 @@
 package flink.example;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.apache.flink.configuration.Configuration;
+import org.apache.flink.streaming.api.functions.source.RichSourceFunction;
 import org.springframework.stereotype.Component;
 
+import flink.example.netty.LocationHandler;
+
 @Component
-public class LocationSource {
+public class LocationSource extends RichSourceFunction<Location> {
 
-	private static final int LOCATION_NUMBER = 10;
-	private static final int TIME_STEP = 1000 * 60;
+	private boolean isRunning = true;
 
-	public List<Location> getLocations() {
-		List<Location> locations = new ArrayList<>();
-		Long time = System.currentTimeMillis() - (LOCATION_NUMBER * TIME_STEP);
-		for (int i = 0; i < LOCATION_NUMBER; i++) {
-			time += TIME_STEP;
-			locations.add(new Location(time, "127.0.0.1", "message"));
+	private LocationHandler locationHandler;
+
+	@Override
+	public void open(Configuration parameters) throws Exception {
+
+		locationHandler = Application.ctx.getBean(LocationHandler.class);
+	}
+
+	@Override
+	public void run(SourceContext<Location> ctx) throws Exception {
+		while (isRunning) {
+			Location location = locationHandler.getLocation();
+			ctx.collect(location);
 		}
-		return locations;
+	}
+
+	@Override
+	public void cancel() {
+		isRunning = false;
 	}
 
 }

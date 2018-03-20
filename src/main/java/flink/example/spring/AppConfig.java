@@ -1,21 +1,21 @@
 package flink.example.spring;
 
+import java.util.concurrent.Executor;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-
-import flink.example.cassandra.CassandraConnector;
-import flink.example.cassandra.CassandraOperations;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @Configuration
+@EnableAsync
 @ComponentScan("flink.example")
 public class AppConfig {
 
 	@Bean
-	@Lazy
-	public CassandraOperations cassandraOperations(CassandraConnector connector) {
-		return new CassandraOperations(connector);
+	public Executor threadPoolTaskExecutor() {
+		return new ThreadPoolTaskExecutor();
 	}
 
 }

@@ -22,7 +22,7 @@ public class LocationStream {
 		final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
 		// get input data by connecting to the socket
-		DataStream<Location> locationStream = env.fromCollection(locationSource.getLocations());
+		DataStream<Location> locationStream = env.addSource(locationSource);
 
 		locationStream.addSink(cassandraLoggerSink);
 

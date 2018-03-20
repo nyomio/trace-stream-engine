@@ -20,5 +20,6 @@ public class CassandraLoggerSink extends RichSinkFunction<Location> {
 	@Override
 	public void invoke(Location value) throws Exception {
 		cassandraOperations.insert(value);
+		// System.out.println(value);
 	}
 }

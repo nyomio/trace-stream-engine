@@ -43,6 +43,10 @@ dependencies {
     
     compile "com.datastax.cassandra:cassandra-driver-core:3.4.0"
     compile "com.datastax.cassandra:cassandra-driver-mapping:3.4.0"
+    
+    // https://mvnrepository.com/artifact/io.netty/netty-all
+	compile group: 'io.netty', name: 'netty-all', version: '4.1.22.Final'
+
 }
 
 compileJava {

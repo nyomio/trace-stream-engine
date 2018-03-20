@@ -1,11 +1,13 @@
 package flink.example.cassandra;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.datastax.driver.core.utils.UUIDs;
 
 import flink.example.Location;
 
+@Component
 public class CassandraOperations {
 
 	private CassandraConnector connector;
