@@ -22,7 +22,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 @Component
 public class NettyServer {
 
-	private static final int port = 7999;
+	private static final int port = 8500;
 	private NettyServerHandler nettyServerHandler;
 	private Executor executor;
 
