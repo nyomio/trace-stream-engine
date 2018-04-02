@@ -1,7 +1,7 @@
 package flink.example.cassandra;
 
 import static flink.example.cassandra.CassandraConst.KEYSPACE_NAME;
-import static flink.example.cassandra.CassandraConst.TABLE_NAME;
+import static flink.example.cassandra.CassandraConst.LOG_TABLE_NAME;
 
 import org.springframework.stereotype.Component;
 
@@ -26,7 +26,8 @@ public class CassandraConnector {
 
 		session = cluster.connect();
 		createKeyspace("SimpleStrategy", 1);
-		createTable();
+		createLogTable();
+		createReportTable();
 	}
 
 	public Session getSession() {
@@ -38,7 +39,7 @@ public class CassandraConnector {
 		cluster.close();
 	}
 
-	public void createKeyspace(String replicationStrategy, int replicationFactor) {
+	private void createKeyspace(String replicationStrategy, int replicationFactor) {
 		StringBuilder sb = new StringBuilder("CREATE KEYSPACE IF NOT EXISTS ").append(KEYSPACE_NAME)
 				.append(" WITH replication = {").append("'class':'").append(replicationStrategy)
 				.append("','replication_factor':").append(replicationFactor).append("};");
@@ -47,11 +48,20 @@ public class CassandraConnector {
 		session.execute(query);
 	}
 
-	public void createTable() {
-		StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS ").append(TABLE_NAME).append("(")
-				.append(CassandraConst.ID).append(" uuid PRIMARY KEY,").append(CassandraConst.TIME)
-				.append(" timestamp,").append(CassandraConst.IP).append(" text,").append(CassandraConst.MESSAGE)
-				.append(" text);");
+	private void createLogTable() {
+		StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS ").append(CassandraConst.KEYSPACE_NAME)
+				.append(".").append(LOG_TABLE_NAME).append("(").append(CassandraConst.ID).append(" uuid PRIMARY KEY,")
+				.append(CassandraConst.IP).append(" text,").append(CassandraConst.MESSAGE).append(" text);");
+
+		String query = sb.toString();
+		session.execute(query);
+	}
+
+	private void createReportTable() {
+		StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS ").append(CassandraConst.KEYSPACE_NAME)
+				.append(".").append(CassandraConst.REPORT_TABLE_NAME).append("(").append(CassandraConst.ID)
+				.append(" uuid PRIMARY KEY,").append(CassandraConst.LAT).append(" double,").append(CassandraConst.LNG)
+				.append(" double,").append(CassandraConst.KNOT).append(" double);");
 
 		String query = sb.toString();
 		session.execute(query);

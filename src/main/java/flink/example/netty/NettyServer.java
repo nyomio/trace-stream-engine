@@ -23,12 +23,12 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 public class NettyServer {
 
 	private static final int port = 8500;
-	private NettyServerHandler nettyServerHandler;
+	private NettyLogHandler nettyLogHandler;
 	private Executor executor;
 
 	@Autowired
-	public NettyServer(NettyServerHandler nettyServerHandler, Executor executor) {
-		this.nettyServerHandler = nettyServerHandler;
+	public NettyServer(NettyLogHandler nettyServerHandler, Executor executor) {
+		this.nettyLogHandler = nettyServerHandler;
 		this.executor = executor;
 	}
 
@@ -46,7 +46,7 @@ public class NettyServer {
 					.childHandler(new ChannelInitializer<SocketChannel>() {
 						@Override
 						public void initChannel(SocketChannel ch) throws Exception {
-							ch.pipeline().addLast(nettyServerHandler);
+							ch.pipeline().addLast(nettyLogHandler);
 						}
 					}).option(ChannelOption.SO_BACKLOG, 128).childOption(ChannelOption.SO_KEEPALIVE, true);
 

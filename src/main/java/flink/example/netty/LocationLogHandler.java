@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import flink.example.Location;
 
 @Component
-public class LocationHandler {
+public class LocationLogHandler {
 
 	BlockingQueue<Location> queue = new LinkedBlockingQueue<>(1000);
 

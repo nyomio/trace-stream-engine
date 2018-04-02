@@ -1,13 +1,12 @@
 package flink.example.simpleclient;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import io.netty.buffer.ByteBuf;
+import flink.example.Location;
 
 @Component
 public class SimpleClientNativeMessageParser {
@@ -20,11 +19,11 @@ public class SimpleClientNativeMessageParser {
 		this.messageComposer = messageComposer;
 	}
 
-	public ParseMessageResult parseNativeMessage(ByteBuf cb) throws InvalidNativeMessageException {
+	public ParseMessageResult parseNativeMessage(Location value) throws InvalidNativeMessageException {
 		try {
 			// sample message:
 			// 0.1;1002;abcd;0;0000;r:0,126000000,47.9,19.915,10.0,20.0,100.0,-1;r:0,126000001,47.91,19.925,11.0,21.0,120.0,-1;e:126000001,Sos:FF;\n
-			String strNativeMessage = cb.toString(Charset.forName("UTF-8"));
+			String strNativeMessage = value.getMessage();
 
 			String[] messageParts = strNativeMessage.split(";");
 
@@ -73,8 +72,10 @@ public class SimpleClientNativeMessageParser {
 					if (currentMessagePart == null)
 						continue;
 					if (currentMessagePart.length() < 2)
-						throw new InvalidNativeMessageException("Invalid report or extendedData entry: '"
-								+ currentMessagePart + "', message: '" + strNativeMessage + "'.");
+						// throw new InvalidNativeMessageException("Invalid report or extendedData
+						// entry: '"
+						// + currentMessagePart + "', message: '" + strNativeMessage + "'.");
+						continue;
 					if (currentMessagePart.charAt(0) == 'r')
 						reports.add(messagePartToReport(currentMessagePart));
 					else if (currentMessagePart.charAt(0) == 'e')

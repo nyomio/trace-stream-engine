@@ -5,10 +5,10 @@ import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;
 import org.springframework.stereotype.Component;
 
 import flink.example.Application;
-import flink.example.Location;
+import flink.example.simpleclient.ParseMessageResult;
 
 @Component
-public class CassandraLoggerSink extends RichSinkFunction<Location> {
+public class CassandraMessageSink extends RichSinkFunction<ParseMessageResult> {
 
 	private CassandraOperations cassandraOperations;
 
@@ -18,7 +18,7 @@ public class CassandraLoggerSink extends RichSinkFunction<Location> {
 	}
 
 	@Override
-	public void invoke(Location value) throws Exception {
-		cassandraOperations.insertLog(value);
+	public void invoke(ParseMessageResult value) throws Exception {
+		cassandraOperations.insertReport(value);
 	}
 }
