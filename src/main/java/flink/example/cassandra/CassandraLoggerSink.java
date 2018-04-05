@@ -1,24 +1,23 @@
 package flink.example.cassandra;
 
+import flink.example.Application;
+import nyomio.data.TrafficLog;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;
 import org.springframework.stereotype.Component;
 
-import flink.example.Application;
-import flink.example.Location;
-
 @Component
-public class CassandraLoggerSink extends RichSinkFunction<Location> {
+public class CassandraLoggerSink extends RichSinkFunction<TrafficLog> {
 
-	private CassandraOperations cassandraOperations;
+  private CassandraOperations cassandraOperations;
 
-	@Override
-	public void open(Configuration parameters) throws Exception {
-		cassandraOperations = Application.ctx.getBean(CassandraOperations.class);
-	}
+  @Override
+  public void open(Configuration parameters) throws Exception {
+    cassandraOperations = Application.ctx.getBean(CassandraOperations.class);
+  }
 
-	@Override
-	public void invoke(Location value) throws Exception {
-		cassandraOperations.insertLog(value);
-	}
+  @Override
+  public void invoke(TrafficLog value, Context context) throws Exception {
+    cassandraOperations.insertLog(value);
+  }
 }

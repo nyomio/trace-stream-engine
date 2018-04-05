@@ -4,51 +4,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReportsAndExtData {
-	private Long deviceId;
-	private List<Report> reportList = new ArrayList<>();
-	private List<ExtendedData> extendedDataList = new ArrayList<>();
 
-	/**
-	 * @return The report(s) contained in the message.
-	 */
-	public List<Report> getReportList() {
-		return reportList;
-	}
+  private Long deviceId;
+  private List<Report> reportList = new ArrayList<>();
+  private List<ExtendedData> extendedDataList = new ArrayList<>();
 
-	public void addReport(Report report) {
-		reportList.add(report);
-	}
+  /**
+   * @return The report(s) contained in the message.
+   */
+  public List<Report> getReportList() {
+    return reportList;
+  }
 
-	/**
-	 * @return The extended data(s) contained in the message.
-	 */
-	public List<ExtendedData> getExtendedDataList() {
-		return extendedDataList;
-	}
+  public void addReport(Report report) {
+    reportList.add(report);
+  }
 
-	public void addExtendedData(ExtendedData extData) {
-		extendedDataList.add(extData);
-	}
+  /**
+   * @return The extended data(s) contained in the message.
+   */
+  public List<ExtendedData> getExtendedDataList() {
+    return extendedDataList;
+  }
 
-	public Long getDeviceId() {
-		return deviceId;
-	}
+  public void addExtendedData(ExtendedData extData) {
+    extendedDataList.add(extData);
+  }
 
-	public void setDeviceId(Long deviceId) {
-		this.deviceId = deviceId;
-	}
+  public Long getDeviceId() {
+    return deviceId;
+  }
 
-	@Override
-	public String toString() {
-		return "ReportsAndExtData [deviceId=" + deviceId + ", reportList=" + reportList + ", extendedDataList="
-				+ extendedDataList + "]";
-	}
+  public void setDeviceId(Long deviceId) {
+    this.deviceId = deviceId;
+  }
 
-	public boolean hasAnyExtendedData() {
-		return !extendedDataList.isEmpty();
-	}
+  @Override
+  public String toString() {
+    return "ReportsAndExtData [deviceId=" + deviceId + ", reportList=" + reportList
+        + ", extendedDataList="
+        + extendedDataList + "]";
+  }
 
-	public boolean hasAnyReport() {
-		return !reportList.isEmpty();
-	}
+  public boolean hasAnyExtendedData() {
+    return !extendedDataList.isEmpty();
+  }
+
+  public boolean hasAnyReport() {
+    return !reportList.isEmpty();
+  }
 }
