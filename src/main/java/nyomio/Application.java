@@ -1,7 +1,7 @@
-package flink.example;
+package nyomio;
 
-import flink.example.cassandra.CassandraConnector;
-import flink.example.spring.AppConfig;
+import nyomio.cassandra.CassandraConnector;
+import nyomio.spring.AppConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Application {
@@ -23,7 +23,7 @@ public class Application {
 
   private static void initCassandra() {
     CassandraConnector connector = ctx.getBean(CassandraConnector.class);
-    connector.connect("localhost", 9042);
+    connector.connect("cassandra", 9042);
   }
 
 }

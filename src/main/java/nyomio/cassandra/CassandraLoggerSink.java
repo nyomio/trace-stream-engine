@@ -1,6 +1,6 @@
-package flink.example.cassandra;
+package nyomio.cassandra;
 
-import flink.example.Application;
+import nyomio.Application;
 import nyomio.data.TrafficLog;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;

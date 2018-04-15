@@ -1,4 +1,4 @@
-package flink.example.simpleclient;
+package nyomio.simpleclient;
 
 public class InvalidNativeMessageException extends Exception {
 

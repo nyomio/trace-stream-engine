@@ -1,2 +1,2 @@
 # trace-stream-engine
-Processes GPS traces and related sensor data
+Processes GPS traces and related sensor nyomio.data

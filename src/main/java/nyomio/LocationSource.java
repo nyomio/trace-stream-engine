@@ -1,6 +1,6 @@
-package flink.example;
+package nyomio;
 
-import flink.example.netty.LocationLogHandler;
+import nyomio.netty.LocationLogHandler;
 import nyomio.data.TrafficLog;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.source.RichSourceFunction;

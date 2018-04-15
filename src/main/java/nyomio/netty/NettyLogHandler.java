@@ -1,6 +1,6 @@
-package flink.example.netty;
+package nyomio.netty;
 
-import flink.example.simpleclient.SimpleClientNativeMessageParser;
+import nyomio.simpleclient.SimpleClientNativeMessageParser;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;

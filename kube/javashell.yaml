@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: java-shell
+spec:
+  volumes:
+  - name: shared-nyomio.data
+    emptyDir: {}
+  containers:
+  - name: java-shell
+    image: anapsix/alpine-java:8
+    command: [ "/bin/bash", "-c", "--" ]
+    args: ["while true; do sleep 30; done;"]
+    volumeMounts:
+    - name: shared-nyomio.data
+      mountPath: /nyomio.data/

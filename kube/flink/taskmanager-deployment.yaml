@@ -17,7 +17,7 @@ spec:
         - taskmanager
         ports:
         - containerPort: 6121
-          name: data
+          name: nyomio.data
         - containerPort: 6122
           name: rpc
         - containerPort: 6125

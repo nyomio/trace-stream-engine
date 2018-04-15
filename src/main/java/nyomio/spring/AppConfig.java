@@ -1,4 +1,4 @@
-package flink.example.spring;
+package nyomio.spring;
 
 import java.util.concurrent.Executor;
 import org.springframework.context.annotation.Bean;

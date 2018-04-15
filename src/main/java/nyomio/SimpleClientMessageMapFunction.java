@@ -1,7 +1,7 @@
-package flink.example;
+package nyomio;
 
-import flink.example.simpleclient.ParseMessageResult;
-import flink.example.simpleclient.SimpleClientNativeMessageParser;
+import nyomio.simpleclient.ParseMessageResult;
+import nyomio.simpleclient.SimpleClientNativeMessageParser;
 import nyomio.data.TrafficLog;
 import org.apache.flink.api.common.functions.RichMapFunction;
 import org.apache.flink.configuration.Configuration;

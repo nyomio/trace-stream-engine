@@ -1,7 +1,7 @@
-package flink.example.cassandra;
+package nyomio.cassandra;
 
-import flink.example.Application;
-import flink.example.simpleclient.ParseMessageResult;
+import nyomio.Application;
+import nyomio.simpleclient.ParseMessageResult;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;
 import org.springframework.stereotype.Component;

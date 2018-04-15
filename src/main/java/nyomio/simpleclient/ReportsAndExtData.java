@@ -1,4 +1,4 @@
-package flink.example.simpleclient;
+package nyomio.simpleclient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class ReportsAndExtData {
   }
 
   /**
-   * @return The extended data(s) contained in the message.
+   * @return The extended nyomio.data(s) contained in the message.
    */
   public List<ExtendedData> getExtendedDataList() {
     return extendedDataList;

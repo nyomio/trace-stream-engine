@@ -1,4 +1,4 @@
-package flink.example.simpleclient;
+package nyomio.simpleclient;
 
 public enum MessageTypes {
   PAIRING(0), NORMAL_UPLOAD(1), CONFIG(2), DATA(3), EXPIRATION_CHECK(4);

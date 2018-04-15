@@ -1,8 +1,8 @@
-package flink.example;
+package nyomio;
 
-import flink.example.cassandra.CassandraLoggerSink;
-import flink.example.cassandra.CassandraMessageSink;
-import flink.example.simpleclient.ParseMessageResult;
+import nyomio.cassandra.CassandraLoggerSink;
+import nyomio.cassandra.CassandraMessageSink;
+import nyomio.simpleclient.ParseMessageResult;
 import nyomio.data.TrafficLog;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -29,7 +29,7 @@ public class LocationStream {
     // get the execution environment
     final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-    // get input data by connecting to the socket
+    // get input nyomio.data by connecting to the socket
     DataStream<TrafficLog> locationStream = env.addSource(locationSource);
     DataStream<ParseMessageResult> parsedMessageStream = locationStream
         .map(simpleClientMessageMapFunction);

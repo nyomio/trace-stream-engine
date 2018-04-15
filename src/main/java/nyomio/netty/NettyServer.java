@@ -1,4 +1,4 @@
-package flink.example.netty;
+package nyomio.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * Discards any incoming data.
+ * Discards any incoming nyomio.data.
  */
 @Component
 public class NettyServer {

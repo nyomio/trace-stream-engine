@@ -1,4 +1,4 @@
-package flink.example.simpleclient;
+package nyomio.simpleclient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -142,7 +142,7 @@ public class SimpleClientNativeMessageParser {
     Report report = null;
 
     // skip the first two characters("r:"), split by ',', must get at least
-    // 2 parts (positionSource, position data)
+    // 2 parts (positionSource, position nyomio.data)
     String[] reportStrParts = messagePart.substring(2).split(",", 2);
     if (reportStrParts.length < 2) {
       throw new InvalidNativeMessageException("Invalid report: '" + messagePart + "'.");
@@ -158,10 +158,10 @@ public class SimpleClientNativeMessageParser {
           "Invalid position source, report: '" + messagePart + "'.");
     }
 
-    // position data may not be null or empty
+    // position nyomio.data may not be null or empty
     if (reportStrParts[1] == null || reportStrParts[1].isEmpty()) {
       throw new InvalidNativeMessageException(
-          "Invalid position data, report: '" + messagePart + "'.");
+          "Invalid position nyomio.data, report: '" + messagePart + "'.");
     }
 
     // posSrc determines the format used in the received parameter
@@ -173,7 +173,7 @@ public class SimpleClientNativeMessageParser {
         String[] gpsReportStrParts = gpsReportStr.split(",");
         if (gpsReportStrParts.length != 7) {
           throw new InvalidNativeMessageException(
-              "Invalid GPS position data, GPS report: '" + gpsReportStr + "'.");
+              "Invalid GPS position nyomio.data, GPS report: '" + gpsReportStr + "'.");
         }
 
         String dateTimeStr = gpsReportStrParts[0];
@@ -206,7 +206,7 @@ public class SimpleClientNativeMessageParser {
           report.setAccuracy(accuracy);
         } catch (Throwable e) {
           throw new InvalidNativeMessageException(
-              "Invalid GPS position data, GPS report: '" + gpsReportStr + "'.");
+              "Invalid GPS position nyomio.data, GPS report: '" + gpsReportStr + "'.");
         }
         break;
       default:
@@ -219,10 +219,10 @@ public class SimpleClientNativeMessageParser {
   private ExtendedData messagePartToExtendedData(String messagePart)
       throws InvalidNativeMessageException {
     /*
-     * - "e:126000001,Sos:FF": the first extended data -- "e:": extended data; split
+     * - "e:126000001,Sos:FF": the first extended nyomio.data -- "e:": extended nyomio.data; split
      * the remaining string by the ',' character: -- "126000000": timestamp --
-     * "Sos:FF": the extended data, split by the ':' character: --- "Sos": data name
-     * --- "FF": data value, hex
+     * "Sos:FF": the extended nyomio.data, split by the ':' character: --- "Sos": nyomio.data name
+     * --- "FF": nyomio.data value, hex
      */
 
     if (messagePart == null) {
@@ -235,7 +235,7 @@ public class SimpleClientNativeMessageParser {
     // exactly 2 parts (dateTime,dataName:dataValue)
     String[] extendedDataStrParts = messagePart.substring(2).split(",");
     if (extendedDataStrParts.length != 2) {
-      throw new InvalidNativeMessageException("Invalid extended data: '" + messagePart + "'.");
+      throw new InvalidNativeMessageException("Invalid extended nyomio.data: '" + messagePart + "'.");
     }
 
     // first part: dateTime
@@ -246,7 +246,7 @@ public class SimpleClientNativeMessageParser {
     String[] dataParts = extendedDataStrParts[1].split(":");
     if (dataParts.length == 0 || dataParts.length > 2) {
       throw new InvalidNativeMessageException(
-          "Invalid extended data, data format invalid: '" + messagePart + "'.");
+          "Invalid extended nyomio.data, nyomio.data format invalid: '" + messagePart + "'.");
     }
 
     String dataName = dataParts[0];
@@ -257,7 +257,7 @@ public class SimpleClientNativeMessageParser {
 
     if (dataName == null || dataName.isEmpty()) {
       throw new InvalidNativeMessageException(
-          "Invalid extended data, no data name provided: '" + messagePart + "'.");
+          "Invalid extended nyomio.data, no nyomio.data name provided: '" + messagePart + "'.");
     }
 
     // fill the values

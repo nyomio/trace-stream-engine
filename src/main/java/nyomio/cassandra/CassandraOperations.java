@@ -1,20 +1,20 @@
-package flink.example.cassandra;
+package nyomio.cassandra;
 
-import static flink.example.cassandra.CassandraConst.RECEIVETIMESTAMP;
-import static flink.example.cassandra.CassandraConst.IP;
-import static flink.example.cassandra.CassandraConst.KEYSPACE_NAME;
-import static flink.example.cassandra.CassandraConst.KNOT;
-import static flink.example.cassandra.CassandraConst.LAT;
-import static flink.example.cassandra.CassandraConst.LNG;
-import static flink.example.cassandra.CassandraConst.LOG_TABLE_NAME;
-import static flink.example.cassandra.CassandraConst.DATA;
-import static flink.example.cassandra.CassandraConst.REPORT_TABLE_NAME;
+import static nyomio.cassandra.CassandraConst.RECEIVETIMESTAMP;
+import static nyomio.cassandra.CassandraConst.IP;
+import static nyomio.cassandra.CassandraConst.KEYSPACE_NAME;
+import static nyomio.cassandra.CassandraConst.KNOT;
+import static nyomio.cassandra.CassandraConst.LAT;
+import static nyomio.cassandra.CassandraConst.LNG;
+import static nyomio.cassandra.CassandraConst.LOG_TABLE_NAME;
+import static nyomio.cassandra.CassandraConst.DATA;
+import static nyomio.cassandra.CassandraConst.REPORT_TABLE_NAME;
 
 import com.datastax.driver.core.querybuilder.Insert;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
 import com.datastax.driver.core.utils.UUIDs;
-import flink.example.simpleclient.ParseMessageResult;
-import flink.example.simpleclient.Report;
+import nyomio.simpleclient.ParseMessageResult;
+import nyomio.simpleclient.Report;
 import nyomio.data.TrafficLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

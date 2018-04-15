@@ -1,4 +1,4 @@
-package flink.example.simpleclient;
+package nyomio.simpleclient;
 
 import org.springframework.stereotype.Component;
 
@@ -24,7 +24,7 @@ public class SimpleClientMessageComposer {
 
   public String getNormalUploadSuccess(String clientMessageSeqNrStr, int processedReportCount,
       int processedExtendedDataCount) {
-    // response to a normal client data upload
+    // response to a normal client nyomio.data upload
     // 0.1;1;0000;1;r:2;e:1;\n
     return getResponseString(PROTOCOL_VERSION, MessageTypes.NORMAL_UPLOAD.ordinal(),
         clientMessageSeqNrStr, true,
@@ -32,7 +32,7 @@ public class SimpleClientMessageComposer {
   }
 
   public byte[] getNormalUploadExpirationFailure(String clientMessageSeqNrStr) {
-    // response to an expired normal client data upload
+    // response to an expired normal client nyomio.data upload
     // 0.1;1;0000;0;1\n
     return getResponseString(PROTOCOL_VERSION, MessageTypes.NORMAL_UPLOAD.ordinal(),
         clientMessageSeqNrStr, false,
@@ -40,7 +40,7 @@ public class SimpleClientMessageComposer {
   }
 
   public byte[] getNormalUploadOverLimitFailure(String clientMessageSeqNrStr) {
-    // response to an expired normal client data upload
+    // response to an expired normal client nyomio.data upload
     // 0.1;1;0000;0;1\n
     return getResponseString(PROTOCOL_VERSION, MessageTypes.NORMAL_UPLOAD.ordinal(),
         clientMessageSeqNrStr, false,
@@ -48,7 +48,7 @@ public class SimpleClientMessageComposer {
   }
 
   public byte[] getNormalUploadFailure(String clientMessageSeqNrStr) {
-    // response to a general failed normal client data upload
+    // response to a general failed normal client nyomio.data upload
     // 0.1;1;0000;0;0\n
     return getResponseString(PROTOCOL_VERSION, MessageTypes.NORMAL_UPLOAD.ordinal(),
         clientMessageSeqNrStr, false,

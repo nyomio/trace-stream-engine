@@ -1,7 +1,7 @@
 package nyomio.data
 
 /**
- * The base domain class for storing and querying data points associated with 4D Message (time, lat, lng, altitude)
+ * The base domain class for storing and querying nyomio.data points associated with 4D Message (time, lat, lng, altitude)
  */
 
 data class DataPoint(
