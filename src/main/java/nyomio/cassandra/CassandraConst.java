@@ -7,7 +7,7 @@ public class CassandraConst {
   public static final String REPORT_TABLE_NAME = "report";
 
   public static final String IP = "ip";
-  public static final String DATA = "nyomio/data";
+  public static final String DATA = "data";
   public static final String RECEIVETIMESTAMP = "receivetimestamp";
 
   public static final String LAT = "lat";

@@ -9,7 +9,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @Configuration
 @EnableAsync
-@ComponentScan("flink.example")
+@ComponentScan("nyomio")
 public class AppConfig {
 
   @Bean

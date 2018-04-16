@@ -13,10 +13,14 @@ import static nyomio.cassandra.CassandraConst.REPORT_TABLE_NAME;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Cluster.Builder;
 import com.datastax.driver.core.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CassandraConnector {
+
+  private static final Logger logger = LoggerFactory.getLogger(CassandraConnector.class);
 
   private Cluster cluster;
 
@@ -49,6 +53,7 @@ public class CassandraConnector {
     String query = "CREATE KEYSPACE IF NOT EXISTS " + KEYSPACE_NAME
         + " WITH replication = {" + "'class':'" + replicationStrategy
         + "','replication_factor':" + replicationFactor + "};";
+    logger.debug(query);
     session.execute(query);
   }
 
@@ -58,6 +63,7 @@ public class CassandraConnector {
             + RECEIVETIMESTAMP + " timeuuid PRIMARY KEY,"
             + IP + " text,"
             + DATA + " blob);";
+    logger.debug(query);
     session.execute(query);
   }
 
@@ -68,6 +74,7 @@ public class CassandraConnector {
             + LAT + " double,"
             + LNG + " double,"
             + KNOT + " double);";
+    logger.debug(query);
     session.execute(query);
   }
 }

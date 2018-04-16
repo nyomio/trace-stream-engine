@@ -7,6 +7,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;
 import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import nyomio.data.TrafficLog;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,15 +34,15 @@ public class NettyLogHandler extends ChannelInboundHandlerAdapter { // (1)
     String address = ((InetSocketAddress) ctx.channel().remoteAddress()).getAddress()
         .getHostAddress();
     try {
-      StringBuilder sb = new StringBuilder();
+      ByteBuffer byteBuffer = ByteBuffer.allocate(in.capacity());
       while (in.isReadable()) { // (1)
-        sb.append((char) in.readByte());
+        byteBuffer.put(in.readByte());
       }
 
       locationHandler
           .onLocationarrived(new TrafficLog(address,
               System.currentTimeMillis(),
-              sb.toString().getBytes(Charset.forName("ASCII")),
+              byteBuffer,
               null,
               null,
               null));

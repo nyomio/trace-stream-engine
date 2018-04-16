@@ -23,7 +23,7 @@ public class SimpleClientNativeMessageParser {
       // sample message:
       // 0.1;1002;abcd;0;0000;r:0,126000000,47.9,19.915,10.0,20.0,100.0,-1;r:0,126000001,47.91,19.925,11.0,21.0,120.0,-1;e:126000001,Sos:FF;\n
 
-      String strNativeMessage = new String(trafficLog.getData());
+      String strNativeMessage = new String(trafficLog.getData().array(), "ASCII");
 
       String[] messageParts = strNativeMessage.split(";");
 

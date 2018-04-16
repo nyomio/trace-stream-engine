@@ -23,7 +23,7 @@ public class Application {
 
   private static void initCassandra() {
     CassandraConnector connector = ctx.getBean(CassandraConnector.class);
-    connector.connect("cassandra", 9042);
+    connector.connect("localhost", 9042);
   }
 
 }
